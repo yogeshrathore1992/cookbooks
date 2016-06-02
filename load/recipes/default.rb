@@ -14,7 +14,7 @@ node["load"]["sites"].each do |site_name, site_data|
 document_root = "var/www/html/#{site_name}"
 
 execute "update" do
-  command "apt-get update"
+  command "ls"
   action :run
 end
 
