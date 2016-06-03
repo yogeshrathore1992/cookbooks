@@ -84,11 +84,12 @@ execute "remove tomcate 7" do
   action :run
 end
 
-execute "Create Direcory for tomcat" do
-  cwd "/home/ubuntu"
-  command "sudo mkdir tomcat7"
-  action :run
-end
+
+#execute "Create Direcory for tomcat" do
+ # cwd "/home/ubuntu"
+  #command "sudo mkdir tomcat7"
+  #action :run
+#end
 
 execute "change ownership for root" do
   cwd "/home/ubuntu"
