@@ -139,7 +139,7 @@ execute "Copy tomcate to tomcat2" do
   action :run
 end
 
-=end
+
 execute "add tomcate1 to startup" do
   command "sudo update-rc.d  tomcat1 defaults"
   action :run
@@ -150,6 +150,7 @@ execute "add tomcate2" do
   action :run
 end
 
+=end
 cookbook_file "home/ubuntu/hello.sql" do
   source "hello.sql"
   mode '0755'
