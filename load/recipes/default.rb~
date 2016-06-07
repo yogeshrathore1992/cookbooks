@@ -150,6 +150,7 @@ execute "add tomcate2" do
   action :run
 end
 
+#yogeshrathorewebsym
 =end
 cookbook_file "home/ubuntu/hello.sql" do
   source "hello.sql"
@@ -203,3 +204,24 @@ script 'connection check' do
 end
 
 
+execute "Starting downloading WARfile" do
+  cwd "/home/ubuntu" 
+  command "s3cmd --force  get s3://opswork-artifacts/wars/Spring3HibernateApp.war"
+  returns [0,1]
+  action :run
+end
+
+
+execute "Starting downloading WARfile" do
+  cwd "/home/ubuntu"
+  command "sudo scp Spring3HibernateApp.war  /var/lib/tomcat7/webapps/Spring3HibernateApp.war"
+  returns [0,1]
+  action :run
+end
+
+
+execute "Starting downloading WARfile" do
+  command "sudo service tomcat7 restart"
+  returns [0,1]
+  action :run
+end
