@@ -91,9 +91,11 @@ end
   #action :run
 #end
 
+=begin
 execute "change ownership for root" do
   cwd "/home/ubuntu"
   command "sudo chown root:root tomcat7"
+  returns [0,1]
   action :run
 end
 
@@ -102,7 +104,8 @@ end
 execute "change mode for tomcat" do
   cwd "/home/ubuntu"
   command "sudo chmod 777 tomcat7"
-  action :run
+  returns [0,1]
+   action :run
 end
 
 
@@ -111,6 +114,7 @@ execute "Create tomcat instance for tomcat1" do
   cwd "/home/ubuntu/tomcat7"
   command "sudo tomcat7-instance-create -p 8082 -c 8007 tomcat1"
   not_if { File.exists?("/etc/init.d/tomcat1") }
+  returns [0,1]
   action :run
 end
 
@@ -135,7 +139,7 @@ execute "Copy tomcate to tomcat2" do
   action :run
 end
 
-
+=end
 execute "add tomcate1 to startup" do
   command "sudo update-rc.d  tomcat1 defaults"
   action :run
