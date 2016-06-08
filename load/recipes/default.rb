@@ -29,48 +29,6 @@ service "tomcat7" do
 end
 
 
-script 'Set the password' do
-  interpreter "bash"
-  code <<-EOH
-   debconf-set-selections <<< 'mysql-server mysql-server/root_password password yogesh'    
-    EOH
-end
-
-
-script 'password again' do
-  interpreter "bash"
-  code <<-EOH
-   debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password yogesh'    
-    EOH
-end
-
-
-execute "Install mysql server" do
-  command "sudo apt-get -y install mysql-server"
-  action :run
-end
-
-execute "restart mysql server" do
-  command "sudo service mysql restart"
-  action :run
-end
-
-execute "Add mysql as a startup" do
-  command "sudo update-rc.d mysql defaults"
-  action :run
-end
-
-
-
-
-script 'connection check' do
-  interpreter "bash"
-  cwd "/home/ubuntu"
-  code <<-EOH
-   mysql --user=root --password=yogesh < hello.sql    
-    EOH
-end
-
 
 execute "Starting downloading WARfile" do
   cwd "/home/ubuntu" 
